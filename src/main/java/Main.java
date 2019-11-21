@@ -11,22 +11,22 @@ import org.glassfish.embeddable.Deployer;
  * 
  * @author kenichiro22
  */
-public class Main{
-    public static void main(String[] args) throws Exception {
-        String port = System.getenv("PORT");
-        port = port != null ? port : "8080";
-        GlassFishProperties gfProps = new GlassFishProperties();
-        gfProps.setPort("http-listener", Integer.parseInt(port));
+public class Main {
+	public static void main(String[] args) throws Exception {
+		String port = System.getenv("PORT");
+		port = port != null ? port : "8080";
+		GlassFishProperties gfProps = new GlassFishProperties();
+		gfProps.setPort("http-listener", Integer.parseInt(port));
 
-        GlassFish glassfish = GlassFishRuntime.bootstrap().newGlassFish(gfProps);
-        glassfish.start();
+		GlassFish glassfish = GlassFishRuntime.bootstrap().newGlassFish(gfProps);
+		glassfish.start();
 
-        File webRoot = new File("src/main/webapp");
-        File classRoot = new File("target", "classes");
+		File webRoot = new File("src/main/webapp");
+		File classRoot = new File("target", "classes");
 
-        Deployer deployer = glassfish.getDeployer();
-        ScatteredArchive archive = new ScatteredArchive("hello", ScatteredArchive.Type.WAR, webRoot);
-        archive.addClassPath(classRoot);
-        deployer.deploy(archive.toURI());
-    }
+		Deployer deployer = glassfish.getDeployer();
+		ScatteredArchive archive = new ScatteredArchive("hello", ScatteredArchive.Type.WAR, webRoot);
+		archive.addClassPath(classRoot);
+		deployer.deploy(archive.toURI(), "--name=hello", "--contextroot=hello");
+	}
 }
