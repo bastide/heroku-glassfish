@@ -27,6 +27,6 @@ public class Main {
 		Deployer deployer = glassfish.getDeployer();
 		ScatteredArchive archive = new ScatteredArchive("hello", ScatteredArchive.Type.WAR, webRoot);
 		archive.addClassPath(classRoot);
-		deployer.deploy(archive.toURI(), "--name=hello", "--contextroot=hello");
+		deployer.deploy(archive.toURI(), "--name=hello", "--contextroot=/");
 	}
 }
