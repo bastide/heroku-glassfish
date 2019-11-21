@@ -51,7 +51,7 @@
                             <assembleDirectory>target</assembleDirectory>
                             <programs>
                                 <program>
-                                    <mainClass>Main</mainClass>
+                                    <mainClass>startup.Main</mainClass>
                                     <id>webapp</id>
                                 </program>
                             </programs>
